@@ -2,6 +2,7 @@
 @section('content')
 	<!-- Cart -->
 	@include('layouts.cart')
+	@include('layouts.account')
 
 	<!-- Slider -->
 	<section class="section-slide">

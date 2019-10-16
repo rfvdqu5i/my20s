@@ -45,13 +45,22 @@ Route::group([
     Route::group(['prefix' => 'products'], function(){
        Route::get('/', 'ProductController@index')->name('admin.product.index');
        Route::get('/create', 'ProductController@create')->name('admin.product.create');
+       Route::get('/{id}/show', 'ProductController@show')->name('admin.product.show');
     });
     Route::group(['prefix' => 'categories'], function(){
        Route::get('/', 'CategoryController@index')->name('admin.categories.index');
        Route::get('/create', 'CategoryController@create')->name('admin.categories.create');
+       Route::get('/{id}/show', 'CategoryController@show')->name('admin.categories.show');
+    });
+    Route::group(['prefix' => 'users'], function(){
+       Route::get('/', 'UserController@index')->name('admin.users.index');
+       Route::get('/create', 'UserController@create')->name('admin.users.create');
+       Route::get('/{id}/show', 'UserController@show')->name('admin.users.show');
     });
 });
 
-Auth::routes();
+Route::get('admin/login', function () {
+  return view('admin.login.login');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('admin/dashboard/products/getlistproduct', 'Admin/ProductController@getListProduct')->name('admin.products.list');

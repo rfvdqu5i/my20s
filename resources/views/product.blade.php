@@ -2,6 +2,7 @@
 @section('content')
 	<!-- Cart -->
 	@include('layouts.cart')
+	@include('layouts.account')
 
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">

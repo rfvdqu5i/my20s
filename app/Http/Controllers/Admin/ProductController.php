@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -13,8 +15,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.products.index');
+    {   
+        $products = Product::paginate(10);
+        return view('admin.products.index', ['products' => $products]);
     }
 
     /**
@@ -46,7 +49,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        dd($product->category->name);
     }
 
     /**
@@ -81,5 +85,19 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getListProduct()
+    {
+        $product = Product::select(['id','name','category_id','origin_price','sale_price','content','status','user_id'])->orderBy('created_at','DESC')->get();
+        return DataTables::of($product)
+        ->addIndexColumn()
+        ->addColumn('action',function ($product)
+        {
+            return '<button type="button" class="btn btn-block btn-outline-success" data-toggle="modal" data-target="#show-product"><i class="fas fa-eye"></i></button>
+                    <button type="button" class="btn btn-block btn-outline-secondary" data-toggle="modal" data-target="#edit-product"><i class="far fa-edit"></i></button>
+                    <button type="button" class="btn btn-block btn-outline-danger"><i class="fas fa-trash"></i></button>';
+        })
+        ->rawColumns(['action','status','file'])
+        ->make(true);
     }
 }
