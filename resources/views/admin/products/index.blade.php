@@ -1,16 +1,22 @@
 @extends('admin.layouts.master')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 @endsection
 @section('content')
 <!-- Content Header -->
 <div class="container-fluid">
-    <div class="row mb-2 pt-1">
-     <div class="col-sm-2">
-        <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#create-product">Thêm mới</button>
-    </div><!-- /.col --> 
-
-</div><!-- /.row -->
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-block btn-secondary mt-2" data-toggle="modal" data-target="#create-product" style="width: 100px;">Thêm mới</button>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right m-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+                <li class="breadcrumb-item active">Danh sách</li>
+            </ol>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
 </div><!-- /.container-fluid -->
 <!-- Content -->
 <div class="container-fluid">
@@ -19,22 +25,8 @@
 
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Danh sách sản phẩm</h3>
-
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-bordered" id="getListProduct">
+                <div class="card-body table-responsive">
+                    <table class="table table-hover table-bordered" id="getListProduct" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th class="align-middle">#</th>
@@ -48,31 +40,7 @@
                                 <th class="align-middle">Hành động</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach($products as $product)
-                            <tr>
-                                <td>{{ $product->id }}</td>
-                                <td><a href="{{ route('admin.product.show', $product->id) }}">{{ $product->name }}</a></td>
-                                <td>{{ $product->category->name }}</td>
-                                <td>{{ $product->origin_price }}</td>
-                                <td>{{ $product->sale_price }}</td>
-                                <td>{{ $product->content }}</td>
-                                <td>{{ $product->status }}</td>
-                                <td>{{ $product->user->name }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-outline-success" data-toggle="modal" data-target="#show-product"><i class="fas fa-eye"></i></button>
-                                    <button type="button" class="btn btn-block btn-outline-secondary" data-toggle="modal" data-target="#edit-product"><i class="far fa-edit"></i></button>
-                                    <button type="button" class="btn btn-block btn-outline-danger"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody> --}}
                     </table> 
-                </div>
-                <div class="card-footer clearfix">
-                    <div class="pagination m-0 float-right">
-                        {{ $products->links() }}
-                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -89,12 +57,15 @@
       <i class="fas fa-chevron-up"></i>
   </a>
 </div><!-- /.container-fluid -->
-@endsection
-@section('script')
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(function(){
-        var t = $('#getListProduct').DataTable({
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#getListProduct').DataTable({
             "language": {
                 processing:     "Đang xử lý...",
                 search:         "Tìm kiếm: &nbsp;:",
@@ -119,8 +90,9 @@
             },
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: {
-                url : '/admin/dashboard/products/getlistproduct',
+                url : '{{ route('admin.products.list') }}',
                 type: "POST"
             },
             columns: [

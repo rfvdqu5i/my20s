@@ -63,4 +63,4 @@ Route::get('admin/login', function () {
   return view('admin.login.login');
 });
 
-Route::post('admin/dashboard/products/getlistproduct', 'Admin/ProductController@getListProduct')->name('admin.products.list');
+Route::post('/admin/dashboard/products/getlistproduct', 'Admin\ProductController@getListProduct')->name('admin.products.list');

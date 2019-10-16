@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use App\Product;
+use Yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 {
@@ -88,7 +89,7 @@ class ProductController extends Controller
     }
     public function getListProduct()
     {
-        $product = Product::select(['id','name','category_id','origin_price','sale_price','content','status','user_id'])->orderBy('created_at','DESC')->get();
+        $product = Product::select(['id','name','category_id','origin_price','sale_price','content','status','user_id'])->get();
         return DataTables::of($product)
         ->addIndexColumn()
         ->addColumn('action',function ($product)
@@ -97,7 +98,7 @@ class ProductController extends Controller
                     <button type="button" class="btn btn-block btn-outline-secondary" data-toggle="modal" data-target="#edit-product"><i class="far fa-edit"></i></button>
                     <button type="button" class="btn btn-block btn-outline-danger"><i class="fas fa-trash"></i></button>';
         })
-        ->rawColumns(['action','status','file'])
+        ->rawColumns(['action'])
         ->make(true);
     }
 }
