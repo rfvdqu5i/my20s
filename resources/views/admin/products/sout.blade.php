@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <!-- Content Header -->
-{{-- <div class="container-fluid">
+{{--<div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
             <button type="button" class="btn btn-block btn-secondary mt-2" data-toggle="modal" data-target="#create-product" style="width: 100px;">Thêm mới</button>
@@ -17,7 +17,7 @@
             </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
-</div> --}}<!-- /.container-fluid -->
+</div><!-- /.container-fluid --> --}}
 <!-- Content -->
 <div class="container-fluid">
     <!-- Main row -->
@@ -48,6 +48,7 @@
         </div>
     </div>
 
+    @include('admin.products.create')
     @include('admin.products.show')
     @include('admin.products.edit')
 

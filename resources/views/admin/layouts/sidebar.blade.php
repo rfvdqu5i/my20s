@@ -53,21 +53,41 @@
                                 <span class="badge badge-info right">6</span>
                             </p>
                         </a>
-                        {{-- <ul class="nav nav-treeview">
+                        <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('admin.product.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="far fa-circle nav-icon text-info"></i>
                                     <p>Tạo mới</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.product.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Danh sách</p>
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>Sản phẩm đang bán</p>
+                                    <span class="badge badge-info right">6</span>
                                 </a>
                             </li>
-
-                        </ul> --}}
+                            <li class="nav-item">
+                                <a href="{{ route('admin.product.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>Sản phẩm bị ẩn</p>
+                                    <span class="badge badge-info right">6</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.product.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>Sản phẩm hết hàng</p>
+                                    <span class="badge badge-info right">6</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.product.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>Sản phẩm đã bán</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="{{ route('admin.categories.index') }}" class="nav-link @if(Request::is('admin/categories')) active @endif">

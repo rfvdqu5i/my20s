@@ -26,50 +26,53 @@
     <link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/admin/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/admin//plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+    <div class="wrapper">
 
-    <!-- Navbar -->
-    @include('admin.layouts.navbar')
-    <!-- /.navbar -->
+        <!-- Navbar -->
+        @include('admin.layouts.navbar')
+        <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    @include('admin.layouts.sidebar')
+        <!-- Main Sidebar Container -->
+        @include('admin.layouts.sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Main content -->
-        @yield('content')
-        <!-- /.content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            @yield('content')
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        @include('admin.layouts.footer')
+        <!-- /.control-sidebar -->
     </div>
-    <!-- /.content-wrapper -->
-    @include('admin.layouts.footer')
-<!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+    <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
-{{-- Datatable --}}
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
-<!-- Sparkline -->
-{{-- <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script> --}}
-<!-- JQVMap -->
-{{-- <script src="/admin/plugins/jqvmap/jquery.vmap.min.js"></script> --}}
+    <!-- jQuery -->
+    <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
+    {{-- Datatable --}}
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- ChartJS -->
+    <script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
+    <!-- Sparkline -->
+    {{-- <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script> --}}
+    <!-- JQVMap -->
+    {{-- <script src="/admin/plugins/jqvmap/jquery.vmap.min.js"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js" type="text/javascript"></script>
 <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script> --}}
 <!-- jQuery Knob Chart -->
@@ -89,5 +92,7 @@
 {{-- <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script> --}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}"></script>
 </body>
 </html>

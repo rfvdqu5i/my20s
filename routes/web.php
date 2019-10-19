@@ -64,3 +64,7 @@ Route::get('admin/login', function () {
 });
 
 Route::post('/admin/dashboard/products/getlistproduct', 'Admin\ProductController@getListProduct')->name('admin.products.list');
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
